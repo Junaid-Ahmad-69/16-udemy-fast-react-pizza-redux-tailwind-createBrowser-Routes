@@ -1,6 +1,6 @@
 import { Form, redirect, useActionData, useNavigation } from 'react-router-dom';
-import {createOrder} from "../services/apiRestaurant.js";
 import {Button} from "../ui/Button.jsx";
+import {useSelector} from "react-redux";
 
 // https://uibakery.io/regex-library/phone-number
 const isValidPhone = (str) =>
@@ -33,6 +33,7 @@ const fakeCart = [
 ];
 
 function CreateOrder() {
+    const userName = useSelector(state => state.user.username)
     const navigation = useNavigation();
     const isSubmitting = navigation.state === 'submitting';
 
@@ -47,7 +48,7 @@ function CreateOrder() {
             <Form method="POST">
                 <div className="mb-5 flex gap-2 flex-col sm:flex-row sm:items-center">
                     <label className="sm:basis-40">First Name</label>
-                    <input className="input grow" type="text" name="customer" required/>
+                    <input className="input grow" type="text" name="customer" defaultValue={userName} required/>
                 </div>
 
                 <div className="mb-5 flex gap-2 flex-col sm:flex-row sm:items-center">
@@ -74,7 +75,7 @@ function CreateOrder() {
                         type="checkbox"
                         name="priority"
                         id="priority"
-                        className="h-6 w-6 accent-yellow-400  focus:outline-none focus:ring focus:ring-yellow-400 focus:ring-offset-2"
+                        className="h-6 w-6 accent-yellow-400 focus:outline-none focus:ring focus:ring-yellow-400 focus:ring-offset-2"
                         // value={withPriority}
                         // onChange={(e) => setWithPriority(e.target.checked)}
                     />
