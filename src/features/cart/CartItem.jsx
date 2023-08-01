@@ -1,11 +1,13 @@
 import {formatCurrency} from "../utils/helpers.js";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {DeleteItem} from "./DeleteIten.jsx";
+import {UpdateItemQuantity} from "./UpdateItemQuantity.jsx";
+import {getCartItemById} from "./cartSlice.js";
 
 function CartItem({item}) {
     const {pizzaId, name, quantity, totalPrice} = item;
 
-    const dispatch = useDispatch()
+  const currentQuantity = useSelector(getCartItemById(pizzaId))
 
 
     return (
@@ -15,6 +17,7 @@ function CartItem({item}) {
             </p>
             <div className="flex justify-between items-center gap-6">
                 <p className="text-sm font-bold">{formatCurrency(totalPrice)}</p>
+                <UpdateItemQuantity pizzaId={pizzaId} currentQuantity={currentQuantity}/>
                 <DeleteItem pizzaId={pizzaId}/>
             </div>
         </li>

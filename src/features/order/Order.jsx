@@ -1,10 +1,4 @@
-// Test ID: IIDSAT
-
-import {
-    calcMinutesLeft,
-    formatCurrency,
-    formatDate,
-} from "../utils/helpers.js";
+import {calcMinutesLeft, formatCurrency, formatDate} from "../utils/helpers.js";
 import {getOrder} from "../services/apiRestaurant.js";
 import {useLoaderData} from "react-router-dom";
 import OrderItem from "./OrderItem.jsx";

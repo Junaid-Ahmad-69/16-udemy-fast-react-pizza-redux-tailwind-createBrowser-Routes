@@ -9,8 +9,6 @@ function Cart() {
     const dispatch = useDispatch();
     const userName = useSelector(state => state.user.username)
     const cart = useSelector(state => state.cart.cart);
-    const uniqueData = [...new Set(cart)];
-    console.log(uniqueData)
 
     if (!cart.length) return <EmptyCart/>
 
